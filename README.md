@@ -4,7 +4,13 @@ Cloud Native app developed with Node.js ready to be packaged with Docker and dep
 
 This project is based on the [CloudNativeJS](https://github.com/CloudNativeJS) standards.
 
+## Pulling from dockerhub
+
 The image of this project is available on dockerhub: [r/valdeci/cloud-native-sample-app](https://hub.docker.com/r/valdeci/cloud-native-sample-app).
+
+To pull it use the following command:
+
+    docker pull valdeci/cloud-native-sample-app 
 
 ## Using `Dockerfile`
 
