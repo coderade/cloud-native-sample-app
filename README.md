@@ -105,7 +105,49 @@ In order to run your application in debug mode:
   ```sh
   docker run -i -p 3000:3000 -p 9229:9229 -t cloude-native-sample-app-tools /bin/run-debug
   ```
-  This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need to change the mapping.
+  This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need 
+  to change the mapping.
   This command also maps port 9229 in the image to the same port on your machine so that you can connect the debugger.
 
 If you wish to run your Docker tools image as a background task, switch the `-i` flag to `-d` on the command line.
+
+## Using `Dockerfile-run`
+
+The Dockerfile-run fike creates a Docker image using a multi-stage build that:
+
+* Retrieves your dependencies and compiles any native add-ons using the node:10 image
+* Copies your dependencies into the node:10-slim image for reduced size
+* Runs your application under the `node` user 
+
+The Dockerfile-run file also do the following:
+
+* It listens on port 3000
+* It can be started using `npm start`
+
+You can change these settings by updating the `EXPOSE` and `CMD` entries of the Dockerfile-run template.
+
+### Building the Docker run image for your application
+
+After any required changes have been made to the Dockerfile-run file, you can build a Docker image for your application 
+using the following command:
+
+```sh
+docker build -t cloude-native-sample-app-run -f Dockerfile-run .
+```
+where `cloude-native-sample-app-run` is the name you want to give your created Docker run image.
+
+### Running the Docker run image for your application
+After the Docker run image has been created for your application, you can run it using either of the following commands:
+
+* Run as an interactive application on your command line:
+  ```sh
+  docker run -i -p 3000:3000 -t cloude-native-sample-app-run
+  ```
+  This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need 
+  to change the mapping.
+
+* Run as a daemon process:
+  ```sh
+  docker run -d -p 3000:3000 -t cloude-native-sample-app-run
+  ```
+  This additionally uses the `-d` flag to run the Docker image as a background task.
