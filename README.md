@@ -1,7 +1,10 @@
 # cloud-native-sample-app
 
 Cloud Native app developed with Node.js ready to be packaged with Docker and deployed with Kubernetes.
+
 This project is based on the [CloudNativeJS](https://github.com/CloudNativeJS) standards.
+
+The image of this project is available on dockerhub: [r/valdeci/cloud-native-sample-app](https://hub.docker.com/r/valdeci/cloud-native-sample-app).
 
 ## Using `Dockerfile`
 
@@ -23,9 +26,9 @@ After any required changes have been made to the Dockerfile, you can build a Doc
 the following command:
 
 ```sh
-docker build -t cloude-native-sample-app -f Dockerfile .
+docker build -t cloud-native-sample-app -f Dockerfile .
 ```
-where `cloude-native-sample-app` is the name you want to give your created Docker image.
+where `cloud-native-sample-app` is the name you want to give your created Docker image.
 
 ### Running the Docker image for your application
 
@@ -34,7 +37,7 @@ After the Docker image has been created for your application, you can run it usi
 * Run as an interactive application on your command line:
   
   ```sh
-  docker run -i -p 3000:3000 -t cloude-native-sample-app
+  docker run -i -p 3000:3000 -t cloud-native-sample-app
   ```
   
   This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need 
@@ -42,7 +45,7 @@ After the Docker image has been created for your application, you can run it usi
 
 * Run as a daemon process:
   ```sh
-  docker run -d -p 3000:3000 -t cloude-native-sample-app
+  docker run -d -p 3000:3000 -t cloud-native-sample-app
   ```
   This uses the `-d` flag rather than the `-i` flag to run the Docker image as a background task.
 
@@ -69,9 +72,9 @@ After any required changes have been made to the Dockerfile-tools, you can build
 using the following command:
 
 ```sh
-docker build -t cloude-native-sample-app-tools -f Dockerfile-tools .
+docker build -t cloud-native-sample-app-tools -f Dockerfile-tools .
 ```
-where `cloude-native-sample-app-tools` is the name you want to give your created tools Docker image.
+where `cloud-native-sample-app-tools` is the name you want to give your created tools Docker image.
 
 ### Running the Docker tools image for your application: Development Mode
 
@@ -90,7 +93,7 @@ image:
   
 2. Run the Docker tools image as an interactive application on your command line in dev mode:
   ```sh
-  docker run -i -p 3000:3000 -v "$PWD"/:/app -v "$PWD"/node_modules_linux:/app/node_modules -t cloude-native-sample-app-tools /bin/run-dev
+  docker run -i -p 3000:3000 -v "$PWD"/:/app -v "$PWD"/node_modules_linux:/app/node_modules -t cloud-native-sample-app-tools /bin/run-dev
   ```
   This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need 
   to change the mapping.
@@ -103,7 +106,7 @@ image:
 In order to run your application in debug mode:
 * Run as an interactive applications on your command line in debug mode:
   ```sh
-  docker run -i -p 3000:3000 -p 9229:9229 -t cloude-native-sample-app-tools /bin/run-debug
+  docker run -i -p 3000:3000 -p 9229:9229 -t cloud-native-sample-app-tools /bin/run-debug
   ```
   This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need 
   to change the mapping.
@@ -132,22 +135,22 @@ After any required changes have been made to the Dockerfile-run file, you can bu
 using the following command:
 
 ```sh
-docker build -t cloude-native-sample-app-run -f Dockerfile-run .
+docker build -t cloud-native-sample-app-run -f Dockerfile-run .
 ```
-where `cloude-native-sample-app-run` is the name you want to give your created Docker run image.
+where `cloud-native-sample-app-run` is the name you want to give your created Docker run image.
 
 ### Running the Docker run image for your application
 After the Docker run image has been created for your application, you can run it using either of the following commands:
 
 * Run as an interactive application on your command line:
   ```sh
-  docker run -i -p 3000:3000 -t cloude-native-sample-app-run
+  docker run -i -p 3000:3000 -t cloud-native-sample-app-run
   ```
   This maps port 3000 in the Docker image to port 3000 on your machine. If you are using a different port, you will need 
   to change the mapping.
 
 * Run as a daemon process:
   ```sh
-  docker run -d -p 3000:3000 -t cloude-native-sample-app-run
+  docker run -d -p 3000:3000 -t cloud-native-sample-app-run
   ```
   This additionally uses the `-d` flag to run the Docker image as a background task.
