@@ -26,7 +26,9 @@ yarn-error.log*
 
 # Environment files
 .env
+minikube
 ecosystem.config.js
 
 # Testing files
 .nyc_output
+
