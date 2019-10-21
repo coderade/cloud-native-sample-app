@@ -279,3 +279,69 @@ then you can:
 
 * Find the deployment using `helm list --all` and searching for an entry with the chart name "cloud-native-sample-app".
 * Remove the application with `helm delete --purge cloud-native-sample-app`.
+
+
+### Using Cloud Health with Node.js
+This application is using [Cloud Health](http://github.com/CloudNativeJS/cloud-health) Connect.
+
+Cloud Health Connect provides a Connect Middleware for use in Express.js, Loopback and other 
+frameworks that uses [Cloud Health](http://github.com/CloudNativeJS/cloud-health) to provide:
+
+* Readiness checks
+* Liveness checks
+* Combined Health (Readiness and Liveness) checks
+* Shutdown handling
+
+#### Health, Liveness and Readiness endpoints
+
+The difference between liveness and readiness endpoints is the purpose: readiness should be used to denote whether an application is "ready" to receive requests, and liveness should be used to denote whether an application is "live" (vs. in a state where it should be restarted.
+
+The combined health endpoint is designed for cloud technologies, such as Cloud Foundry which only support a single endpoint for both liveness and readiness checking.
+
+
+##### Liveness endpoint:
+   
+  ```js
+  app.use('/live', health.LivenessEndpoint(healthcheck))
+  ```
+  How in this project no livessness checks are registered, this will report `200 OK` and `UP`.
+  
+  To test in your browser go to [http://localhost:{PORT}/live](http://localhost:{PORT}/live)
+  
+  If you got something like this:
+  
+     {
+         "status": "UP",
+         "checks": []
+     }
+     
+   Yout liveness endpoint is working fine.
+   
+##### Readiness endpoint:
+   
+  ```js
+  app.use('/ready', health.LivenessEndpoint(healthcheck))
+  ```
+  
+  To test in your browser go to [http://localhost:{PORT}/ready](http://localhost:{PORT}/ready)
+  
+  If you get a result like this:
+  
+      {
+          "status": "UP",
+          "checks": [
+              {
+                  "name": "PingCheck HEAD:example.com:80/",
+                  "state": "UP",
+                  "data": {
+                      "reason": ""
+                  }
+              }
+          ]
+      }
+   Yout readiness endpoint is working fine.   
+
+
+For information on how to register startup, readiness, liveness and shutdown checks, 
+see the [Cloud Health documentation](https://github.com/CloudNativeJS/cloud-health/blob/master/README.md).
+
