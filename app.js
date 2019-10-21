@@ -4,7 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const health = require('@cloudnative/health-connect');
-
+const prom = require('appmetrics-prometheus')
+    .attach();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
