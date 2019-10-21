@@ -4,7 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const health = require('@cloudnative/health-connect');
-const zipkin = require('appmetrics-zipkin')({host: 'localhost', port: 9411, serviceName: 'cloud-native-sample-app'});
+const zipkin = require('appmetrics-zipkin')(
+    {
+        host: 'jagger-collector.jaeger.svc.cluster.local',
+        port: 9411,
+        serviceName: 'cloud-native-sample-app'
+    });
 const prom = require('appmetrics-prometheus')
     .attach();
 
